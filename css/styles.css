@@ -1,0 +1,180 @@
+/* ============ BASE ============ */
+:root {
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background: #fff;
+  color: #08263a;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============ BACKGROUNDS & TEXT ============ */
+.mesh {
+  background:
+    radial-gradient(60% 50% at 15% 10%, #3bf0b455, transparent 60%),
+    radial-gradient(50% 50% at 90% 20%, #1d6fe855, transparent 60%),
+    radial-gradient(50% 60% at 60% 100%, #0fb5c455, transparent 60%),
+    #effbfd;
+}
+
+.grad-text {
+  background: linear-gradient(90deg, #0fb5c4, #1d6fe8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-name {
+  background: linear-gradient(90deg, #0a3fb5, #1d6fe8 45%, #0fb5c4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 #0fb5c433);
+}
+
+/* ============ HERO DECORATION ============ */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: .55;
+  animation: float 9s ease-in-out infinite;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  background: #fff8;
+  animation: rise 6s infinite;
+}
+
+.wave {
+  position: absolute;
+  top: -10%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 40%;
+  background: linear-gradient(#3bf0b4, #0fb5c4);
+  animation: spin 6s linear infinite;
+}
+
+/* ============ COMPONENTS ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: all .8s cubic-bezier(.2, .7, .2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.card {
+  transition: transform .35s, box-shadow .35s;
+}
+
+.card:hover {
+  transform: translateY(-8px) rotate(-.6deg);
+  box-shadow: 0 24px 40px -18px #0fb5c4aa;
+}
+
+.chip {
+  transition: all .2s;
+}
+
+.chip[aria-pressed=true] {
+  background: #ff7a70;
+  color: #fff;
+  border-color: #ff7a70;
+  transform: scale(1.05);
+}
+
+.tab[aria-selected=true] {
+  background: linear-gradient(90deg, #0fb5c4, #1d6fe8);
+  color: #fff;
+}
+
+.faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s;
+}
+
+.step-node {
+  transition: all .4s;
+}
+
+.step-node.on {
+  background: #3bf0b4;
+  border-color: #3bf0b4;
+  transform: scale(1.15);
+}
+
+.step-node.cur {
+  box-shadow: 0 0 0 8px #3bf0b455;
+}
+
+.pop {
+  animation: pop .35s;
+}
+
+/* ============ BEFORE / AFTER SLIDER ============ */
+.ba-before {
+  clip-path: inset(0 calc(100% - var(--p)) 0 0);
+}
+
+.ba-handle {
+  left: var(--p);
+}
+
+/* ============ SAFE-AREA HELPERS ============ */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-bottom-offset {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+}
+
+/* ============ KEYFRAMES ============ */
+@keyframes float {
+  50% { transform: translateY(-26px) translateX(14px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rise {
+  to { transform: translateY(-110vh); }
+}
+
+@keyframes pop {
+  50% { transform: scale(1.25); }
+}
+
+/* ============ ACCESSIBILITY ============ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
