@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neatandcleanlaundry.com.np/sitemap.xml
+
